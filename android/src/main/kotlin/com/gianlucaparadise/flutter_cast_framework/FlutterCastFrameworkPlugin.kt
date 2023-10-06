@@ -52,6 +52,13 @@ class FlutterCastFrameworkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
     private fun onAttachedToEngine(applicationContext: Context, messenger: BinaryMessenger) {
         this.applicationContext = applicationContext
 
+        try {
+            this.mCastContext = CastContext.getSharedInstance(applicationContext)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return
+        }
+
         castApi = MyApi()
         PlatformBridgeApis.CastHostApi.setup(messenger, castApi)
 
@@ -60,12 +67,12 @@ class FlutterCastFrameworkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
 
         mMessageCastingChannel = MessageCastingChannel(castFlutterApi)
 
-        CastContext.getSharedInstance(applicationContext).addCastStateListener { i ->
+        mCastContext?.addCastStateListener { i ->
             Log.d(TAG, "Cast state changed: $i")
             flutterApi?.onCastStateChanged(i.toLong()) { }
         }
 
-        mSessionManager = CastContext.getSharedInstance(applicationContext).sessionManager
+        mSessionManager = mCastContext?.sessionManager
         mCastSession = mSessionManager?.currentCastSession
     }
 
@@ -120,6 +127,7 @@ class FlutterCastFrameworkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
 
     private var mMessageCastingChannel: MessageCastingChannel? = null
 
+    private var mCastContext: CastContext? = null
     private var mCastSession: CastSession? = null
         set(value) {
             Log.d(TAG, "Updating mCastSession - castSession changed: ${field != value}")
@@ -170,11 +178,12 @@ class FlutterCastFrameworkPlugin : FlutterPlugin, MethodCallHandler, ActivityAwa
         mCastSession = mSessionManager?.currentCastSession
 
         val context = applicationContext
-        if (context == null) {
+        val castContext = mCastContext
+        if (context == null || castContext == null) {
             Log.d(TAG, "App: ON_RESUME - missing context")
             return
         }
-        val castState = CastContext.getSharedInstance(context).castState
+        val castState = castContext.castState
         flutterApi?.onCastStateChanged(castState.toLong()) { }
     }
 
