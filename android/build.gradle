@@ -37,6 +37,10 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+
+    if (gradle.gradleVersion >= "8.0") {
+        namespace "com.studiosol.flutter_cast_framework"
+    }
 }
 
 dependencies {
