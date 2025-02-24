@@ -4,19 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cast_framework/src/PlatformBridgeApis.dart';
 import 'package:meta/meta.dart';
 
-typedef MediaQueueItemsInsertedInRangeCallback = void Function(
-    int insertIndex, int insertCount);
-typedef MediaQueueItemsChangedAtIndexesCallback = void Function(
-    List<int?> indexes);
-typedef MediaQueueItemsReorderedAtIndexesCallback = void Function(
-    List<int?> indexes, int insertBeforeIndex);
+typedef MediaQueueItemsInsertedInRangeCallback = void Function(int insertIndex, int insertCount);
+typedef MediaQueueItemsChangedAtIndexesCallback = void Function(List<int?> indexes);
+typedef MediaQueueItemsReorderedAtIndexesCallback = void Function(List<int?> indexes, int insertBeforeIndex);
 
 class MediaQueue {
   final CastHostApi _hostApi;
 
   MediaQueue(this._hostApi) {
-    this.itemUpdatedAtIndexStream =
-        this._itemUpdatedAtIndexStreamController.stream;
+    this.itemUpdatedAtIndexStream = this._itemUpdatedAtIndexStreamController.stream;
   }
 
   void dispose() {

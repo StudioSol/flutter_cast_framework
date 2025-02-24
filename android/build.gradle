@@ -39,7 +39,7 @@ android {
     }
 
     if (gradle.gradleVersion >= "8.0") {
-        namespace "com.studiosol.flutter_cast_framework"
+        namespace "com.gianlucaparadise.flutter_cast_framework"
     }
 }
 
