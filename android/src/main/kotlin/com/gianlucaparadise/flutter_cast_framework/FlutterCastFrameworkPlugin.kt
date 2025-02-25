@@ -3,7 +3,6 @@ package com.gianlucaparadise.flutter_cast_framework
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
 import com.gianlucaparadise.flutter_cast_framework.cast.CastDialogOpener
 import com.gianlucaparadise.flutter_cast_framework.cast.MessageCastingChannel
@@ -11,10 +10,7 @@ import com.gianlucaparadise.flutter_cast_framework.media.*
 import com.google.android.gms.cast.MediaError
 import com.google.android.gms.cast.MediaSeekOptions
 import com.google.android.gms.cast.MediaStatus.*
-import com.google.android.gms.cast.framework.CastContext
-import com.google.android.gms.cast.framework.CastSession
-import com.google.android.gms.cast.framework.SessionManager
-import com.google.android.gms.cast.framework.SessionManagerListener
+import com.google.android.gms.cast.framework.*
 import com.google.android.gms.cast.framework.media.MediaQueue
 import com.google.android.gms.cast.framework.media.RemoteMediaClient
 import com.google.android.gms.cast.framework.media.TracksChooserDialogFragment
@@ -25,18 +21,11 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
-
+import androidx.fragment.app.FragmentActivity
 
 class FlutterCastFrameworkPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, DefaultLifecycleObserver {
     companion object {
         const val TAG = "AndroidCastPlugin"
-
-        @JvmStatic
-        fun registerWith(registrar: Registrar) {
-            val plugin = FlutterCastFrameworkPlugin()
-            plugin.onAttachedToEngine(registrar.context(), registrar.messenger())
-        }
     }
 
     init {

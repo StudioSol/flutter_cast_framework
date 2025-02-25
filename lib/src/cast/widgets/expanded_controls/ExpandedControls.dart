@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../cast.dart';
@@ -72,11 +71,9 @@ class _ExpandedControlsState extends State<ExpandedControls> {
   void initState() {
     final sessionManager = widget.castFramework.castContext.sessionManager;
     sessionManager.state.addListener(_onSessionStateChanged);
-    sessionManager.remoteMediaClient.playerState
-        .addListener(_onPlayerStateChanged);
+    sessionManager.remoteMediaClient.playerState.addListener(_onPlayerStateChanged);
     sessionManager.remoteMediaClient.onProgressUpdated = _onProgressUpdated;
-    sessionManager.remoteMediaClient.onAdBreakClipProgressUpdated =
-        _onAdBreakClipProgressUpdated;
+    sessionManager.remoteMediaClient.onAdBreakClipProgressUpdated = _onAdBreakClipProgressUpdated;
 
     super.initState();
   }
@@ -85,8 +82,7 @@ class _ExpandedControlsState extends State<ExpandedControls> {
   void dispose() {
     final sessionManager = widget.castFramework.castContext.sessionManager;
     sessionManager.state.removeListener(_onSessionStateChanged);
-    sessionManager.remoteMediaClient.playerState
-        .removeListener(_onPlayerStateChanged);
+    sessionManager.remoteMediaClient.playerState.removeListener(_onPlayerStateChanged);
     sessionManager.remoteMediaClient.onProgressUpdated = null;
     sessionManager.remoteMediaClient.onAdBreakClipProgressUpdated = null;
 
@@ -133,15 +129,12 @@ class _ExpandedControlsState extends State<ExpandedControls> {
     int durationMs,
     int whenSkippableMs,
   ) {
-    widget.adSkipBoxController
-        .updateProgress(progressMs, durationMs, whenSkippableMs);
+    widget.adSkipBoxController.updateProgress(progressMs, durationMs, whenSkippableMs);
   }
 
   Widget _getDecoratedToolbar(MediaInfo? mediaInfo) {
-    final title = mediaInfo
-        ?.mediaMetadata?.strings?[describeEnum(MediaMetadataKey.title)];
-    final subtitle = mediaInfo
-        ?.mediaMetadata?.strings?[describeEnum(MediaMetadataKey.subtitle)];
+    final title = mediaInfo?.mediaMetadata?.strings?[MediaMetadataKey.title.name];
+    final subtitle = mediaInfo?.mediaMetadata?.strings?[MediaMetadataKey.subtitle.name];
 
     return Container(
       decoration: _topDownBlackGradient,
@@ -197,8 +190,8 @@ class _ExpandedControlsState extends State<ExpandedControls> {
     return DecorationImage(
       image: NetworkImage(imgUrl),
       fit: BoxFit.cover,
-      onError: (exception, stackTrace) => debugPrint(
-          "ExpandedControls: error while retrieving image with url: $imgUrl"),
+      onError: (exception, stackTrace) =>
+          debugPrint("ExpandedControls: error while retrieving image with url: $imgUrl"),
     );
   }
 
@@ -226,8 +219,7 @@ class _ExpandedControlsState extends State<ExpandedControls> {
 
   @override
   Widget build(BuildContext context) {
-    var remoteMediaClient =
-        this.widget.castFramework.castContext.sessionManager.remoteMediaClient;
+    var remoteMediaClient = this.widget.castFramework.castContext.sessionManager.remoteMediaClient;
 
     return SafeArea(
       child: StreamBuilder<MediaStatus>(

@@ -153,8 +153,8 @@ class _CastFlutterApiImplementor extends CastFlutterApi {
   }
 
   @override
-  void onAdBreakClipProgressUpdated(String adBreakId, String adBreakClipId,
-      int progressMs, int durationMs, int whenSkippableMs) {
+  void onAdBreakClipProgressUpdated(
+      String adBreakId, String adBreakClipId, int progressMs, int durationMs, int whenSkippableMs) {
     remoteMediaClient.onAdBreakClipProgressUpdated?.call(
       adBreakId,
       adBreakClipId,

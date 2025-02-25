@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../cast.dart';
@@ -24,10 +23,8 @@ class MiniController extends StatelessWidget {
     final thumbnail = MiniControllerThumbnail(mediaInfo: status?.mediaInfo);
 
     final mediaInfo = status?.mediaInfo;
-    final titleText = mediaInfo
-        ?.mediaMetadata?.strings?[describeEnum(MediaMetadataKey.title)];
-    final subtitleText = mediaInfo
-        ?.mediaMetadata?.strings?[describeEnum(MediaMetadataKey.subtitle)];
+    final titleText = mediaInfo?.mediaMetadata?.strings?[MediaMetadataKey.title.name];
+    final subtitleText = mediaInfo?.mediaMetadata?.strings?[MediaMetadataKey.subtitle.name];
     final title = Text(
       titleText ?? "",
       maxLines: 1,
@@ -73,8 +70,7 @@ class MiniController extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var remoteMediaClient =
-        this.castFramework.castContext.sessionManager.remoteMediaClient;
+    var remoteMediaClient = this.castFramework.castContext.sessionManager.remoteMediaClient;
 
     return Stack(
       children: [

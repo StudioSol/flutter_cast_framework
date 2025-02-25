@@ -64,8 +64,7 @@ class RemoteMediaClient {
   /// Called when there is an outgoing request to the receiver.
   VoidCallback? onSendingRemoteMediaRequest;
 
-  final _mediaStatusStreamController =
-      StreamController<MediaStatus>.broadcast();
+  final _mediaStatusStreamController = StreamController<MediaStatus>.broadcast();
   late Stream<MediaStatus> mediaStatusStream;
 
   /// Called when updated ad break status information is received.

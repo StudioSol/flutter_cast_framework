@@ -21,8 +21,7 @@ const SKIP_AD_TIMER_PLACEHOLDER = "{{skip_remaining_time}}";
 class ExpandedControlsAdSkipBox extends StatefulWidget {
   final ExpandedControlsAdSkipBoxController controller;
 
-  final _defaultSkipAdTimerText =
-      "You can skip this ad in $SKIP_AD_TIMER_PLACEHOLDER...";
+  final _defaultSkipAdTimerText = "You can skip this ad in $SKIP_AD_TIMER_PLACEHOLDER...";
   final _defaultSkipAdButtonText = "Skip Ad";
 
   /// Label to indicate remaining time for ad. Default is "You can skip this ad in {{skip_remaining_time}}...",
@@ -43,8 +42,7 @@ class ExpandedControlsAdSkipBox extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ExpandedControlsAdSkipBox> createState() =>
-      _ExpandedControlsAdSkipBoxState();
+  State<ExpandedControlsAdSkipBox> createState() => _ExpandedControlsAdSkipBoxState();
 }
 
 class _ExpandedControlsAdSkipBoxState extends State<ExpandedControlsAdSkipBox> {
@@ -73,10 +71,8 @@ class _ExpandedControlsAdSkipBoxState extends State<ExpandedControlsAdSkipBox> {
     });
   }
 
-  String _replaceRemainingTime(
-      String textWithPlaceholder, String remainingTime) {
-    return textWithPlaceholder.replaceAll(
-        SKIP_AD_TIMER_PLACEHOLDER, remainingTime);
+  String _replaceRemainingTime(String textWithPlaceholder, String remainingTime) {
+    return textWithPlaceholder.replaceAll(SKIP_AD_TIMER_PLACEHOLDER, remainingTime);
   }
 
   @override

@@ -21,11 +21,6 @@ class QueueListItemHolder extends StatefulWidget {
     this.emptyItemStateBuilder,
   }) : super(key: key);
 
-  Widget _getEmptyState(BuildContext context) {
-    if (emptyItemStateBuilder == null) return defaultEmptyState();
-    return emptyItemStateBuilder!(context, false, null);
-  }
-
   Widget _getErrorState(BuildContext context, Object? error) {
     if (emptyItemStateBuilder == null) return defaultEmptyState();
     return emptyItemStateBuilder!(context, false, error);
@@ -41,8 +36,6 @@ class QueueListItemHolder extends StatefulWidget {
 }
 
 class _QueueListItemHolderState extends State<QueueListItemHolder> {
-  bool _hasChanged = false;
-
   @override
   Widget build(BuildContext context) {
     final sessionManager = widget.castFramework.castContext.sessionManager;
@@ -64,7 +57,6 @@ class _QueueListItemHolderState extends State<QueueListItemHolder> {
                 sub.cancel();
                 setState(() {
                   // FIXME: I don't like how the refresh is triggered
-                  _hasChanged = true;
                 });
               }
             });

@@ -32,15 +32,14 @@ class ExpandedControlsAdInfoControls extends StatelessWidget {
     final adBreakId = adBreakStatus?.adBreakId;
     final adBreakClipId = adBreakStatus?.adBreakClipId;
 
-    final hasAdBreakInfo =
-        adBreakId?.isEmpty == false || adBreakClipId?.isEmpty == false;
+    final hasAdBreakInfo = adBreakId?.isEmpty == false || adBreakClipId?.isEmpty == false;
 
     if (mediaStatus?.isPlayingAd != true && !hasAdBreakInfo) {
       return Spacer();
     }
 
-    final adBreakClipInfo = mediaStatus?.mediaInfo?.adBreakClips
-        ?.firstWhere((a) => a?.id == adBreakClipId, orElse: () => null);
+    final adBreakClipInfo =
+        mediaStatus?.mediaInfo?.adBreakClips?.firstWhere((a) => a?.id == adBreakClipId, orElse: () => null);
     final adTitle = adBreakClipInfo?.title ?? "";
 
     return Expanded(
@@ -71,12 +70,10 @@ class ExpandedControlsAdInfoControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final remoteMediaClient =
-        this.castFramework.castContext.sessionManager.remoteMediaClient;
+    final remoteMediaClient = this.castFramework.castContext.sessionManager.remoteMediaClient;
 
     return StreamBuilder<MediaStatus>(
-      stream:
-          remoteMediaClient.mediaStatusStream.distinct(didChangeAdBreakStatus),
+      stream: remoteMediaClient.mediaStatusStream.distinct(didChangeAdBreakStatus),
       builder: (BuildContext context, AsyncSnapshot<MediaStatus> snapshot) {
         if (snapshot.hasData && snapshot.data?.mediaInfo != null) {
           var mediaStatus = snapshot.data;
