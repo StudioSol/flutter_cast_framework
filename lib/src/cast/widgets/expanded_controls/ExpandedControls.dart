@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../cast.dart';
@@ -134,8 +133,8 @@ class _ExpandedControlsState extends State<ExpandedControls> {
   }
 
   Widget _getDecoratedToolbar(MediaInfo? mediaInfo) {
-    final title = mediaInfo?.mediaMetadata?.strings?[describeEnum(MediaMetadataKey.title)];
-    final subtitle = mediaInfo?.mediaMetadata?.strings?[describeEnum(MediaMetadataKey.subtitle)];
+    final title = mediaInfo?.mediaMetadata?.strings?[MediaMetadataKey.title.name];
+    final subtitle = mediaInfo?.mediaMetadata?.strings?[MediaMetadataKey.subtitle.name];
 
     return Container(
       decoration: _topDownBlackGradient,
