@@ -1,7 +1,17 @@
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+buildscript {
+    ext.kotlin_version = '1.8.20'
+    repositories {
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     namespace "com.gianlucaparadise.flutter_cast_framework"
@@ -35,13 +45,13 @@ dependencies {
 
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    api "com.google.android.gms:play-services-cast-framework:21.3.0"
+    api "com.google.android.gms:play-services-cast-framework:22.0.0"
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // Para abrir TracksChooserDialogFragment
-    implementation "androidx.activity:activity-ktx:1.8.0"
+    implementation "androidx.activity:activity-ktx:1.10.0"
 }
 
