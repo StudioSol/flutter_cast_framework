@@ -20,14 +20,12 @@ class ExpandedControlsConnectedDeviceLabel extends StatelessWidget {
   }) : super(key: key);
 
   String _replaceDeviceName(String textWithPlaceholder, String deviceName) {
-    return textWithPlaceholder.replaceAll(
-        CAST_DEVICE_NAME_PLACEHOLDER, deviceName);
+    return textWithPlaceholder.replaceAll(CAST_DEVICE_NAME_PLACEHOLDER, deviceName);
   }
 
   @override
   Widget build(BuildContext context) {
-    final textStyle =
-        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+    final textStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
     return FutureBuilder<CastDevice>(
       future: castFramework.castContext.sessionManager.getCastDevice(),

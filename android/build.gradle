@@ -25,7 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 33
+    compileSdk 34
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -37,10 +37,6 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
-
-    if (gradle.gradleVersion >= "8.0") {
-        namespace "com.studiosol.flutter_cast_framework"
-    }
 }
 
 dependencies {
@@ -48,7 +44,6 @@ dependencies {
     def appcompat_version = "1.6.1"
 
     implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     api "com.google.android.gms:play-services-cast-framework:21.3.0"
 

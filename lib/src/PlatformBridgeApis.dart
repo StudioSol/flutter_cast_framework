@@ -12,10 +12,13 @@ import 'package:flutter/services.dart';
 enum StreamType {
   /// An invalid (unknown) stream type.
   invalid,
+
   /// A stream type of "none".
   none,
+
   /// A buffered stream type.
   buffered,
+
   /// A live stream type.
   live,
 }
@@ -24,16 +27,22 @@ enum StreamType {
 enum MediaType {
   /// A media type representing generic media content.
   generic,
+
   /// A media type representing a movie.
   movie,
+
   /// A media type representing an TV show.
   tvShow,
+
   /// A media type representing a music track.
   musicTrack,
+
   /// A media type representing a photo.
   photo,
+
   /// A media type representing an audiobook chapter.
   audiobookChapter,
+
   /// The smallest media type value that can be assigned for application-defined media types.
   user,
 }
@@ -42,58 +51,85 @@ enum MediaType {
 enum MediaMetadataKey {
   /// String key: Album artist.
   albumArtist,
+
   /// String key: Album title.
   albumTitle,
+
   /// String key: Artist.
   artist,
+
   /// String key: Audiobook title.
   bookTitle,
+
   /// String key: Broadcast date.
   broadcastDate,
+
   /// String key: Chapter number.
   chapterNumber,
+
   /// String key: Chapter title.
   chapterTitle,
+
   /// String key: Composer.
   composer,
+
   /// String key: Creation date.
   creationDate,
+
   /// Integer key: Disc number.
   discNumber,
+
   /// Integer key: Episode number.
   episodeNumber,
+
   /// Integer key: Height.
   height,
+
   /// Double key: Location latitude.
   locationLatitude,
+
   /// Double key: Location longitude.
   locationLongitude,
+
   /// String key: Location name.
   locationName,
+
   /// Int key: Queue item ID.
   queueItemId,
+
   /// String key: Release date.
   releaseDate,
+
   /// Integer key: Season number.
   seasonNumber,
+
   /// Time key in milliseconds: section duration.
   sectionDuration,
+
   /// Time key in milliseconds: section start absolute time.
   sectionStartAbsoluteTime,
+
   /// Time key in milliseconds: section start time in the container.
   sectionStartTimeInContainer,
+
   /// Time key in milliseconds: section start time in media item.
   sectionStartTimeInMedia,
+
   /// String key: Series title.
   seriesTitle,
+
   /// String key: Studio.
   studio,
+
   /// String key: Subtitle.
   subtitle,
+
   /// String key: Title.
   title,
+
   /// Integer key: Track number.
   trackNumber,
+
   /// Integer key: Width.
   width,
 }
@@ -102,10 +138,13 @@ enum MediaMetadataKey {
 enum TrackType {
   /// A media track type indicating an unknown track type.
   unknown,
+
   /// A media track type indicating a text track.
   text,
+
   /// A media track type indicating an audio track.
   audio,
+
   /// A media track type indicating a video track.
   video,
 }
@@ -114,16 +153,22 @@ enum TrackType {
 enum TrackSubtype {
   /// A media track subtype indicating an unknown subtype.
   unknown,
+
   /// A media track subtype indicating no subtype.
   none,
+
   /// A media track subtype indicating subtitles.
   subtitles,
+
   /// A media track subtype indicating closed captions.
   captions,
+
   /// A media track subtype indicating descriptions.
   descriptions,
+
   /// A media track subtype indicating chapters.
   chapters,
+
   /// A media track subtype indicating metadata.
   metadata,
 }
@@ -132,14 +177,19 @@ enum TrackSubtype {
 enum PlayerState {
   /// Constant indicating unknown player state.
   unknown,
+
   /// Constant indicating that the media player is idle.
   idle,
+
   /// Constant indicating that the media player is playing.
   playing,
+
   /// Constant indicating that the media player is paused.
   paused,
+
   /// Constant indicating that the media player is buffering.
   buffering,
+
   /// Constant indicating that the media player is loading.
   loading,
 }
@@ -171,9 +221,7 @@ class MediaLoadRequestData {
     return MediaLoadRequestData(
       shouldAutoplay: result[0] as bool?,
       currentTime: result[1] as int?,
-      mediaInfo: result[2] != null
-          ? MediaInfo.decode(result[2]! as List<Object?>)
-          : null,
+      mediaInfo: result[2] != null ? MediaInfo.decode(result[2]! as List<Object?>) : null,
     );
   }
 }
@@ -225,13 +273,9 @@ class MediaInfo {
     result as List<Object?>;
     return MediaInfo(
       contentId: result[0] as String?,
-      streamType: result[1] != null
-          ? StreamType.values[result[1]! as int]
-          : null,
+      streamType: result[1] != null ? StreamType.values[result[1]! as int] : null,
       contentType: result[2] as String?,
-      mediaMetadata: result[3] != null
-          ? MediaMetadata.decode(result[3]! as List<Object?>)
-          : null,
+      mediaMetadata: result[3] != null ? MediaMetadata.decode(result[3]! as List<Object?>) : null,
       mediaTracks: (result[4] as List<Object?>?)?.cast<MediaTrack?>(),
       streamDuration: result[5] as int?,
       adBreakClips: (result[6] as List<Object?>?)?.cast<AdBreakClipInfo?>(),
@@ -265,9 +309,7 @@ class MediaMetadata {
   static MediaMetadata decode(Object result) {
     result as List<Object?>;
     return MediaMetadata(
-      mediaType: result[0] != null
-          ? MediaType.values[result[0]! as int]
-          : null,
+      mediaType: result[0] != null ? MediaType.values[result[0]! as int] : null,
       strings: (result[1] as Map<Object?, Object?>?)?.cast<String?, String?>(),
       webImages: (result[2] as List<Object?>?)?.cast<WebImage?>(),
     );
@@ -334,13 +376,9 @@ class MediaTrack {
     result as List<Object?>;
     return MediaTrack(
       id: result[0] as int?,
-      trackType: result[1] != null
-          ? TrackType.values[result[1]! as int]
-          : null,
+      trackType: result[1] != null ? TrackType.values[result[1]! as int] : null,
       name: result[2] as String?,
-      trackSubtype: result[3] != null
-          ? TrackSubtype.values[result[3]! as int]
-          : null,
+      trackSubtype: result[3] != null ? TrackSubtype.values[result[3]! as int] : null,
       contentId: result[4] as String?,
       language: result[5] as String?,
     );
@@ -375,16 +413,10 @@ class MediaStatus {
   static MediaStatus decode(Object result) {
     result as List<Object?>;
     return MediaStatus(
-      playerState: result[0] != null
-          ? PlayerState.values[result[0]! as int]
-          : null,
+      playerState: result[0] != null ? PlayerState.values[result[0]! as int] : null,
       isPlayingAd: result[1] as bool?,
-      mediaInfo: result[2] != null
-          ? MediaInfo.decode(result[2]! as List<Object?>)
-          : null,
-      adBreakStatus: result[3] != null
-          ? AdBreakStatus.decode(result[3]! as List<Object?>)
-          : null,
+      mediaInfo: result[2] != null ? MediaInfo.decode(result[2]! as List<Object?>) : null,
+      adBreakStatus: result[3] != null ? AdBreakStatus.decode(result[3]! as List<Object?>) : null,
     );
   }
 }
@@ -520,9 +552,7 @@ class MediaQueueItem {
       itemId: result[0] as int?,
       playbackDuration: result[1] as double?,
       startTime: result[2] as double?,
-      media: result[3] != null
-          ? MediaInfo.decode(result[3]! as List<Object?>)
-          : null,
+      media: result[3] != null ? MediaInfo.decode(result[3]! as List<Object?>) : null,
       autoplay: result[4] as bool?,
       preloadTime: result[5] as double?,
     );
@@ -625,23 +655,23 @@ class _CastHostApiCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 128: 
+      case 128:
         return AdBreakClipInfo.decode(readValue(buffer)!);
-      case 129: 
+      case 129:
         return CastDevice.decode(readValue(buffer)!);
-      case 130: 
+      case 130:
         return CastMessage.decode(readValue(buffer)!);
-      case 131: 
+      case 131:
         return MediaInfo.decode(readValue(buffer)!);
-      case 132: 
+      case 132:
         return MediaLoadRequestData.decode(readValue(buffer)!);
-      case 133: 
+      case 133:
         return MediaMetadata.decode(readValue(buffer)!);
-      case 134: 
+      case 134:
         return MediaQueueItem.decode(readValue(buffer)!);
-      case 135: 
+      case 135:
         return MediaTrack.decode(readValue(buffer)!);
-      case 136: 
+      case 136:
         return WebImage.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -654,8 +684,7 @@ class CastHostApi {
   /// Constructor for [CastHostApi].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  CastHostApi({BinaryMessenger? binaryMessenger})
-      : _binaryMessenger = binaryMessenger;
+  CastHostApi({BinaryMessenger? binaryMessenger}) : _binaryMessenger = binaryMessenger;
   final BinaryMessenger? _binaryMessenger;
 
   static const MessageCodec<Object?> codec = _CastHostApiCodec();
@@ -664,8 +693,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.sendMessage', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_message]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[arg_message]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -686,8 +714,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.showCastDialog', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -708,8 +735,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.setMute', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_muted]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[arg_muted]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -730,8 +756,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.getCastDevice', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -757,8 +782,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.loadMediaLoadRequestData', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_request]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[arg_request]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -779,8 +803,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.getMediaInfo', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -803,11 +826,9 @@ class CastHostApi {
   }
 
   Future<void> play() async {
-    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.CastHostApi.play', codec,
-        binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final BasicMessageChannel<Object?> channel =
+        BasicMessageChannel<Object?>('dev.flutter.pigeon.CastHostApi.play', codec, binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -825,11 +846,9 @@ class CastHostApi {
   }
 
   Future<void> pause() async {
-    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.CastHostApi.pause', codec,
-        binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final BasicMessageChannel<Object?> channel =
+        BasicMessageChannel<Object?>('dev.flutter.pigeon.CastHostApi.pause', codec, binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -847,11 +866,9 @@ class CastHostApi {
   }
 
   Future<void> stop() async {
-    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.CastHostApi.stop', codec,
-        binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final BasicMessageChannel<Object?> channel =
+        BasicMessageChannel<Object?>('dev.flutter.pigeon.CastHostApi.stop', codec, binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -872,8 +889,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.showTracksChooserDialog', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -891,11 +907,9 @@ class CastHostApi {
   }
 
   Future<void> skipAd() async {
-    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.CastHostApi.skipAd', codec,
-        binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final BasicMessageChannel<Object?> channel =
+        BasicMessageChannel<Object?>('dev.flutter.pigeon.CastHostApi.skipAd', codec, binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -913,11 +927,9 @@ class CastHostApi {
   }
 
   Future<void> seekTo(int arg_progress) async {
-    final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.CastHostApi.seekTo', codec,
-        binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_progress]) as List<Object?>?;
+    final BasicMessageChannel<Object?> channel =
+        BasicMessageChannel<Object?>('dev.flutter.pigeon.CastHostApi.seekTo', codec, binaryMessenger: _binaryMessenger);
+    final List<Object?>? replyList = await channel.send(<Object?>[arg_progress]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -938,8 +950,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.queueAppendItem', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_item]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[arg_item]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -960,8 +971,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.queueNextItem', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -982,8 +992,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.queuePrevItem', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -1004,8 +1013,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.getQueueItemCount', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -1031,8 +1039,7 @@ class CastHostApi {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
         'dev.flutter.pigeon.CastHostApi.getQueueItemAtIndex', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_index]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[arg_index]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -1091,21 +1098,21 @@ class _CastFlutterApiCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 128: 
+      case 128:
         return AdBreakClipInfo.decode(readValue(buffer)!);
-      case 129: 
+      case 129:
         return AdBreakStatus.decode(readValue(buffer)!);
-      case 130: 
+      case 130:
         return CastMessage.decode(readValue(buffer)!);
-      case 131: 
+      case 131:
         return MediaInfo.decode(readValue(buffer)!);
-      case 132: 
+      case 132:
         return MediaMetadata.decode(readValue(buffer)!);
-      case 133: 
+      case 133:
         return MediaStatus.decode(readValue(buffer)!);
-      case 134: 
+      case 134:
         return MediaTrack.decode(readValue(buffer)!);
-      case 135: 
+      case 135:
         return WebImage.decode(readValue(buffer)!);
       default:
         return super.readValueOfType(type, buffer);
@@ -1157,7 +1164,8 @@ abstract class CastFlutterApi {
 
   void onProgressUpdated(int progressMs, int durationMs);
 
-  void onAdBreakClipProgressUpdated(String adBreakId, String adBreakClipId, int progressMs, int durationMs, int whenSkippableMs);
+  void onAdBreakClipProgressUpdated(
+      String adBreakId, String adBreakClipId, int progressMs, int durationMs, int whenSkippableMs);
 
   void itemsInsertedInRange(int insertIndex, int insertCount);
 
@@ -1196,8 +1204,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.onCastStateChanged was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.onCastStateChanged was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_castState = (args[0] as int?);
           assert(arg_castState != null,
@@ -1215,8 +1222,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.onMessageReceived was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.onMessageReceived was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final CastMessage? arg_message = (args[0] as CastMessage?);
           assert(arg_message != null,
@@ -1360,8 +1366,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.onStatusUpdated was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.onStatusUpdated was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final MediaStatus? arg_mediaStatus = (args[0] as MediaStatus?);
           assert(arg_mediaStatus != null,
@@ -1435,8 +1440,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.onAdBreakStatusUpdated was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.onAdBreakStatusUpdated was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final MediaStatus? arg_mediaStatus = (args[0] as MediaStatus?);
           assert(arg_mediaStatus != null,
@@ -1468,8 +1472,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.onProgressUpdated was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.onProgressUpdated was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_progressMs = (args[0] as int?);
           assert(arg_progressMs != null,
@@ -1490,8 +1493,8 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.onAdBreakClipProgressUpdated was null.');
+          assert(
+              message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.onAdBreakClipProgressUpdated was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final String? arg_adBreakId = (args[0] as String?);
           assert(arg_adBreakId != null,
@@ -1508,7 +1511,8 @@ abstract class CastFlutterApi {
           final int? arg_whenSkippableMs = (args[4] as int?);
           assert(arg_whenSkippableMs != null,
               'Argument for dev.flutter.pigeon.CastFlutterApi.onAdBreakClipProgressUpdated was null, expected non-null int.');
-          api.onAdBreakClipProgressUpdated(arg_adBreakId!, arg_adBreakClipId!, arg_progressMs!, arg_durationMs!, arg_whenSkippableMs!);
+          api.onAdBreakClipProgressUpdated(
+              arg_adBreakId!, arg_adBreakClipId!, arg_progressMs!, arg_durationMs!, arg_whenSkippableMs!);
           return;
         });
       }
@@ -1521,8 +1525,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.itemsInsertedInRange was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.itemsInsertedInRange was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final int? arg_insertIndex = (args[0] as int?);
           assert(arg_insertIndex != null,
@@ -1557,8 +1560,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.itemsRemovedAtIndexes was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.itemsRemovedAtIndexes was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final List<int?>? arg_indexes = (args[0] as List<Object?>?)?.cast<int?>();
           assert(arg_indexes != null,
@@ -1576,8 +1578,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.itemsReorderedAtIndexes was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.itemsReorderedAtIndexes was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final List<int?>? arg_indexes = (args[0] as List<Object?>?)?.cast<int?>();
           assert(arg_indexes != null,
@@ -1598,8 +1599,7 @@ abstract class CastFlutterApi {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          assert(message != null,
-          'Argument for dev.flutter.pigeon.CastFlutterApi.itemsUpdatedAtIndexes was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.CastFlutterApi.itemsUpdatedAtIndexes was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final List<int?>? arg_indexes = (args[0] as List<Object?>?)?.cast<int?>();
           assert(arg_indexes != null,
