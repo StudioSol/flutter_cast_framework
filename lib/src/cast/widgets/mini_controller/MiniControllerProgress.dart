@@ -15,13 +15,11 @@ class MiniControllerProgress extends StatefulWidget {
 }
 
 class _MiniControllerProgressState extends State<MiniControllerProgress> {
-
   double? _newValue;
 
   @override
   Widget build(BuildContext context) {
-    final remoteMediaClient =
-        this.widget.castFramework.castContext.sessionManager.remoteMediaClient;
+    final remoteMediaClient = this.widget.castFramework.castContext.sessionManager.remoteMediaClient;
 
     return StreamBuilder<ProgressInfo>(
       stream: remoteMediaClient.progressStream,
@@ -62,8 +60,7 @@ class _MiniControllerProgressState extends State<MiniControllerProgress> {
   }
 
   void _onChangeEnd(double value, int duration) {
-    final remoteMediaClient =
-        this.widget.castFramework.castContext.sessionManager.remoteMediaClient;
+    final remoteMediaClient = this.widget.castFramework.castContext.sessionManager.remoteMediaClient;
 
     remoteMediaClient.seekTo((value * duration).toInt());
 

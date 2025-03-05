@@ -20,8 +20,7 @@ class ExpandedControlsProgress extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<ExpandedControlsProgress> createState() =>
-      _ExpandedControlsProgressState();
+  State<ExpandedControlsProgress> createState() => _ExpandedControlsProgressState();
 }
 
 class _ExpandedControlsProgressState extends State<ExpandedControlsProgress> {
@@ -50,8 +49,7 @@ class _ExpandedControlsProgressState extends State<ExpandedControlsProgress> {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle =
-        Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
+    final textStyle = Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white);
 
     // this is the denominator, can't be 0
     final durationFix = this.duration == 0 ? 1 : this.duration;

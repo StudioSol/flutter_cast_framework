@@ -1,0 +1,6 @@
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.gianlucaparadise.flutter_cast_framework
+        pluginClass: FlutterCastFrameworkPlugin

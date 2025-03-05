@@ -13,15 +13,13 @@ class MiniControllerPlayPauseButton extends StatelessWidget {
   }) : super(key: key);
 
   void _onPausePressed() {
-    var remoteMediaClient =
-        this.castFramework.castContext.sessionManager.remoteMediaClient;
+    var remoteMediaClient = this.castFramework.castContext.sessionManager.remoteMediaClient;
 
     remoteMediaClient.pause();
   }
 
   void _onPlayPressed() {
-    var remoteMediaClient =
-        this.castFramework.castContext.sessionManager.remoteMediaClient;
+    var remoteMediaClient = this.castFramework.castContext.sessionManager.remoteMediaClient;
 
     remoteMediaClient.play();
   }

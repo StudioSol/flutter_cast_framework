@@ -78,8 +78,7 @@ class SessionManager {
   late RemoteMediaClient remoteMediaClient;
 }
 
-typedef MessageReceivedCallback = void Function(
-    String namespace, String message);
+typedef MessageReceivedCallback = void Function(String namespace, String message);
 
 /// State of the session
 enum SessionState {
