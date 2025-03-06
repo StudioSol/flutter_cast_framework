@@ -19,7 +19,7 @@ class CastButton extends StatelessWidget {
     return GestureDetector(
         child: Padding(
           padding: padding,
-          child:  CastIcon(
+          child: CastIcon(
             castFramework: castFramework,
             color: color,
           ),

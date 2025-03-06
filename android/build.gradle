@@ -1,23 +1,12 @@
-group 'com.gianlucaparadise.flutter_cast_framework'
-version '1.0-SNAPSHOT'
-
 buildscript {
-    ext.kotlin_version = '1.8.20'
+    ext.kotlin_version = '1.9.20'
     repositories {
-        google()
         mavenCentral()
+        google()
     }
-
     dependencies {
         classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-rootProject.allprojects {
-    repositories {
-        google()
-        mavenCentral()
     }
 }
 
@@ -25,32 +14,44 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 33
+    namespace "com.gianlucaparadise.flutter_cast_framework"
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 21
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        buildConfig = true
+    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
-    defaultConfig {
-        minSdkVersion 21
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
-    lintOptions {
-        disable 'InvalidPackage'
-    }
 }
 
 dependencies {
-    def lifecycle_version = "2.2.0"
+    def lifecycle_version = "2.6.2"
     def appcompat_version = "1.6.1"
 
     implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    api "com.google.android.gms:play-services-cast-framework:21.3.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    api "com.google.android.gms:play-services-cast-framework:22.0.0"
 
     // Lifecycle
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
-    // To open TracksChooserDialogFragment
-    implementation "androidx.activity:activity-ktx:1.7.0"
+    // Para abrir TracksChooserDialogFragment
+    implementation "androidx.activity:activity-ktx:1.8.2"
 }
+
